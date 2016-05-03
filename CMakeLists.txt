@@ -175,8 +175,11 @@ install(DIRECTORY include/${PROJECT_NAME}/
 
 ## Add gtest based cpp test target and link libraries
 if (CATKIN_ENABLE_TESTING)
-	catkin_add_gtest(${PROJECT_NAME}-test test/test_models.cpp)
-	target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
+	catkin_add_gtest(${PROJECT_NAME}-test-models test/test_models.cpp)
+  target_link_libraries(${PROJECT_NAME}-test-models ${PROJECT_NAME})
+
+  catkin_add_gtest(${PROJECT_NAME}-test-linear test/test_linear_filters.cpp)
+	target_link_libraries(${PROJECT_NAME}-test-linear ${PROJECT_NAME})
 endif()
 
 ## Add folders to be run by python nosetests
