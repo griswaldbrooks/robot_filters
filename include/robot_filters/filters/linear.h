@@ -49,7 +49,16 @@ namespace linear
  */
 class Type
 {
+public:
+  typedef boost::shared_ptr<Type> Ptr;
+  typedef const Ptr ConstPtr;
 
+  Type();
+  Eigen::Vector2d getNumerator();
+  Eigen::Vector2d getDenominator();
+protected:
+  Eigen::Vector2d b_, a_;  /// Coefficients of the filter transfer function according to the standard
+                         /// H(s) = {b_(0)s + b_(1)}/{a_(0)s + a_(1)}
 };
 
 /**
@@ -57,7 +66,17 @@ class Type
  */
 class Butter : Type
 {
+public:
+  Butter(double cutoff_frequency);
+};
 
+/**
+ * \brief Elliptic filter family to provide equiripple in passband and stopband.
+ */
+class Elliptic : Type
+{
+public:
+  Elliptic(double cutoff_frequency, double passband_ripple, double stopband_ripple);
 };
 
 /**
@@ -66,8 +85,17 @@ class Butter : Type
 class Bandform
 {
 private:
-  Type filter_type_;  /// The prototype low pass filter type for the bandform.
+  Type::Ptr filter_type_;  /// The prototype low pass filter type for the bandform.
 };
+
+/***
+ * Bandforms seem to be a member of filter type and not the other way around
+ * because for different filter types there are various parameters, where
+ * with the bandforms, they're pretty much without parameters.
+ * Bandpass, bandstop should probably not be a class, as they are a composite type
+ * in the digital domain, not the continuous domain, and will be made after
+ * the conversion from the s-domain.
+ */
 
 /**
  * \brief Low-pass filter type.

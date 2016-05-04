@@ -115,6 +115,7 @@ include_directories(include
 
 ## Declare a C++ library
 add_library(${PROJECT_NAME}
+  src/filters/linear.cpp
   src/models/models.cpp
 )
 
