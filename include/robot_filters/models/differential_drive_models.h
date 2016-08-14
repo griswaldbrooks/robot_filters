@@ -22,36 +22,14 @@
  * \author Griswald Brooks
  */
 
-#ifndef ROBOT_FILTERS_MODELS_MODELS_H
-#define ROBOT_FILTERS_MODELS_MODELS_H
-
-// C++ Standard Library
-#include <vector>
-
-// Boost
-#include <boost/shared_ptr.hpp>
-
-// Eigen
-#include <Eigen/Core>
+#ifndef ROBOT_FILTERS_MODELS_DIFFERENTIAL_DRIVE_MODELS_H
+#define ROBOT_FILTERS_MODELS_DIFFERENTIAL_DRIVE_MODELS_H
 
 namespace robot_filters
 {
 
 namespace models
 {
-
-class model
-{
-public:
-  typedef boost::shared_ptr<model> Ptr;
-  typedef const Ptr ConstPtr;
-private:
-  Eigen::MatrixXd m;
-};
-
-}  // end namespace models
-
-}  // end namespace robot_filters
 
 // Differential Drive Model
 // q  = [x, y, theta, dx, dy, dtheta]'
@@ -69,4 +47,10 @@ private:
 //      [ (u_1 + u_2) sin(q_3)/(m*r_w)]
 //      [ (u_1 - u_2)      r_t/(I_zz*r_w)]
 //
-#endif  // ROBOT_FILTERS_MODELS_MODELS_H
+
+
+}  // end namespace models
+
+}  // end namespace robot_filters
+
+#endif  // ROBOT_FILTERS_MODELS_DIFFERENTIAL_DRIVE_MODELS_H

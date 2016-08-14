@@ -22,51 +22,20 @@
  * \author Griswald Brooks
  */
 
-#ifndef ROBOT_FILTERS_MODELS_MODELS_H
-#define ROBOT_FILTERS_MODELS_MODELS_H
+#ifndef ROBOT_FILTERS_FILTERS_KALMAN_H
+#define ROBOT_FILTERS_FILTERS_KALMAN_H
 
-// C++ Standard Library
-#include <vector>
-
-// Boost
-#include <boost/shared_ptr.hpp>
-
-// Eigen
-#include <Eigen/Core>
 
 namespace robot_filters
 {
 
-namespace models
+namespace kalman
 {
 
-class model
-{
-public:
-  typedef boost::shared_ptr<model> Ptr;
-  typedef const Ptr ConstPtr;
-private:
-  Eigen::MatrixXd m;
-};
 
-}  // end namespace models
+
+}  // end namespace kalman
 
 }  // end namespace robot_filters
 
-// Differential Drive Model
-// q  = [x, y, theta, dx, dy, dtheta]'
-// dq = [ q_4]
-//      [ q_5]
-//      [ q_6]
-//      [-q_6 sin(q_3) (q_4 cos(q3) + q5 sin(q_3_))]
-//      [ q_6 cos(q_3) (q_4 cos(q3) + q5 sin(q_3_))]
-//      [ 0]
-//
-// Bu = [ 0]
-//      [ 0]
-//      [ 0]
-//      [ (u_1 + u_2) cos(q_3)/(m*r_w)]
-//      [ (u_1 + u_2) sin(q_3)/(m*r_w)]
-//      [ (u_1 - u_2)      r_t/(I_zz*r_w)]
-//
-#endif  // ROBOT_FILTERS_MODELS_MODELS_H
+#endif  // ROBOT_FILTERS_FILTERS_KALMAN_H
